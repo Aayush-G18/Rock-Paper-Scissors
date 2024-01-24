@@ -60,6 +60,7 @@ function game() {
                 break;
             case -1:
                 scoreC+=1;
+                break;
             case 0:
                 index-=1;
                 break;
@@ -72,4 +73,4 @@ function game() {
     }
 }
 
-game()
+game();
