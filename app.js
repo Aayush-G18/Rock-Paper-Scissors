@@ -3,45 +3,21 @@ function getComputerChoice() {
     return a[Math.floor(Math.random() * 3)];
 }
 
-function playRound(player,computer) {
-    let playerSelection=player.toLowerCase();
-    let computerSelection=computer.toLowerCase();
-    let a = ["rock", "paper", "scissors"];
-    if (a.indexOf(playerSelection) === a.indexOf(computerSelection)) {
-        console.log(`Tie Replay Round`);
+function playRound(player, computer) {
+    let playerSelection = player.toLowerCase();
+    let computerSelection = computer.toLowerCase();
+
+    if (playerSelection === computerSelection) {
+        console.log(`Tie! Replay Round`);
         return 0;
     } else {
         switch (playerSelection) {
             case "rock":
-                if (computerSelection === "scissors"){
-                console.log(`You Win!${playerSelection} beats ${computerSelection}`);
-                return 1;
-                }
-                else {
-                    console.log(`You Lose!${computerSelection} beats ${playerSelection}`);
-                    return -1;
-                }
-                break;
+                return computerSelection === "scissors" ? 1 : -1;
             case "paper":
-                if (computerSelection === "rock"){
-                    console.log(`You Win!${playerSelection} beats ${computerSelection}`);
-                    return 1;
-                }
-                else {
-                    console.log(`You Lose!${computerSelection} beats ${playerSelection}`);
-                    return -1;
-                }
-                    break;
+                return computerSelection === "rock" ? 1 : -1;
             case "scissors":
-                if (computerSelection === "paper"){
-                    console.log(`You Win!${playerSelection} beats ${computerSelection}`);
-                    return 1;
-                }
-                else {
-                    console.log(`You Lose!${computerSelection} beats ${playerSelection}`);
-                    return -1;
-                }
-                    break;
+                return computerSelection === "paper" ? 1 : -1;
         }
     }
 }
@@ -50,7 +26,7 @@ function game() {
 
     let scoreP=0;
     let scoreC=0;
-    for (let index = 0; index < 4; index++) {
+    // for (let index = 0; index < 4; index++) {
         var player=prompt("Enter value:");
         var comp=getComputerChoice();
         let point=playRound(player,comp);
@@ -65,12 +41,14 @@ function game() {
                 index-=1;
                 break;
         }
-    }
+    //}
     if (scoreP>scoreC) {
         console.log(`You win ${scoreP}-${scoreC} computer`);        
     }else {
         console.log(`You Lose ${scoreP}-${scoreC} computer`);
     }
 }
-
-game();
+const btns = document.body.querySelectorAll('#btn');
+btns.forEach(btn =>{
+    btn.addEventListener('click',game);
+});
